@@ -1,0 +1,30 @@
+# Function to merge two sorted arrays
+def merge_sorted_arrays(arr1, arr2):
+    merged = []
+    i = j = 0
+
+    while i < len(arr1) and j < len(arr2):
+        if arr1[i] < arr2[j]:
+            merged.append(arr1[i])
+            i += 1
+        else:
+            merged.append(arr2[j])
+            j += 1
+
+    # Append the remaining elements from both arrays (if any)
+    merged.extend(arr1[i:])
+    merged.extend(arr2[j:])
+
+    return merged
+
+# Read input
+n = int(input())
+heights_jessy = list(map(int, input().split()))
+m = int(input())
+heights_james = list(map(int, input().split()))
+
+# Merge the two sorted arrays
+merged_heights = merge_sorted_arrays(heights_jessy, heights_james)
+
+# Print the merged heights in ascending order
+print(" ".join(map(str, merged_heights)))
