@@ -1,0 +1,28 @@
+def is_prime(num):
+    if num <= 1:
+        return False
+    for i in range(2, int(num**0.5) + 1):
+        if num % i == 0:
+            return False
+    return True
+
+def find_neighboring_primes(n):
+    primes = []
+    for i in range(2, n + 1):
+        if is_prime(i):
+            primes.append(i)
+
+    count = 0
+    for i in range(len(primes) - 2):
+        if primes[i] + primes[i + 1] + 1 in primes:
+            count += 1
+
+    return count
+
+n, k = map(int, input().split())
+count = find_neighboring_primes(n)
+
+if count >= k:
+    print("YES")
+else:
+    print("NO")
